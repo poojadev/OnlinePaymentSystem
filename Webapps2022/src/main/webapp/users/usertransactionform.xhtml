@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>User Registration</title>
+
+        <script type="text/css">
+            html, body
+            {
+                margin:0px;
+                padding:0px;
+                width:100%;
+                min-height:100%;
+                height:100%;
+            }
+            .outer_table
+            {
+                width:100%;
+                height:100%;
+            }
+
+
+
+        </script>    
+    </h:head>
+
+
+    <h:body>
+
+        <f:metadata>
+            <f:viewParam name="requestFrom" value="#{userTransactionBean.requestFrom}"/>
+            <f:viewParam name="requesterId" value="#{userTransactionBean.requesterId}"/>
+            <f:viewParam name="requestedAmount" value="#{userTransactionBean.amount}"/>
+            <f:viewParam name="convertedamount" value="#{userTransactionBean.convertedCurrency}"/>
+            <f:param name="currencyType" value="#{userTransactionBean.currencyType}" />
+
+
+
+            <f:event type="preRenderView" listener="#{userTransactionBean.onLoad}" />
+
+        </f:metadata>
+        <p:growl id="msgs" showDetail="true" />
+
+        <h:form>  
+            <p:growl id="msgs" showDetail="true" />
+
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center"  class="outer_table">
+                <tr>
+                    <td>
+                        <table width="500" height="300" cellpadding="0" cellspacing="0" border="0" align="center">
+                            <tr>
+                                <td align="center">
+                                    <p:panel header="Trasaction From">
+
+
+
+
+
+                                        <h:panelGrid columns="2" cellpadding="2">  
+
+
+                                            Message :<h:inputText id ="messages" value="#{userTransactionBean.message}" title="Enter message" >
+
+                                            </h:inputText>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" cellpadding="2">  
+
+
+                                            Request From: <h:outputLabel id ="requestFrom" value="#{userTransactionBean.requestFrom}"   />
+
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2" cellpadding="2">  
+
+
+
+                                            Converted Amount:  <h:outputLabel id ="amount" value="#{userTransactionBean.convertedCurrency}" />
+
+                                            <p:outputLabel value="#{userTransactionBean.currencyType}" />                        
+
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" cellpadding="2">  
+
+
+                                            Requested Amount     <p:outputLabel 
+
+                                                id="currencyupdate" value="#{userTransactionBean.amount}" pt:oninput="onTextChanged()"></p:outputLabel>
+
+                                        </h:panelGrid>
+
+
+                                        <h:form>
+
+                                            <h:panelGrid columns="1" cellpadding="1">  
+                                                <p:growl id="msgs" showDetail="true" />
+
+                                                <h:commandButton id="transaction"  value="Transaction" action="#{
+
+                                                                     userTransactionBean.submitTransactionDeatils()}" title="Register User"
+
+
+
+
+                                                                 />
+                                                <h:commandButton id="back"
+                                                                 action="/users/useraccountactivitypage.xhtml"
+
+                                                                 value="Bcak" title="Back"/>
+                                            </h:panelGrid>
+                                        </h:form>
+
+
+                                    </p:panel>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+
+    </h:body>
+</html>
+

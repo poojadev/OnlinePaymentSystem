@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <head>
+        <title>User Account History</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .trasactionTable {   
+                border-collapse:collapse;
+                border:1px solid #000000;
+            }
+
+            .transactionTableHeader {
+                text-align:center;
+                background:none repeat scroll 0 0 #B5B5B5;
+                border-bottom:1px solid #000000;  
+                padding:2px;
+            }
+
+            .transactionTableHeader1 {
+                text-align:center;
+                background:none repeat scroll 0 0 #D3D3D3;
+                border-bottom:1px solid #000000;  
+                padding:2px;
+            }
+
+
+
+        </style>
+
+
+    </head>
+    <h:body>
+
+
+
+
+        <h:panelGrid>
+
+            Hello <h:outputLabel id ="usename" value="#{userTransactionBean.senderName}"    />
+            Account Balance <h:outputLabel id ="updatedbalance" value="#{userTransactionBean.updatedBalance}"  />
+            <h:outputLabel id ="currencyType" value="#{userTransactionBean.userCurrencyType}"  />
+
+            <br></br>
+        </h:panelGrid>
+
+        <h:panelGrid  columns="3" >
+
+
+            <h:panelGrid >
+                <p:panel  header="Debit Trasactions" />
+                <p:dataTable value="#{userTransactionBean.debitTransactions}" var="user" 
+                             styleClass = "trasactionTable" cellSeparator="2"                             >
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Send To</f:facet>    				
+                            #{user.reciverName}
+
+                    </p:column>
+
+                    <p:column styleClass="transactionTableHeader1">    				
+                        <f:facet name="header">Amount</f:facet>    				
+                            #{user.amount}
+
+                    </p:column>
+
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Date</f:facet>    				
+                            #{user.transactionDate}
+
+                    </p:column>
+
+
+                </p:dataTable>
+            </h:panelGrid>
+
+
+            <h:panelGrid  >
+                <p:panel  header="Credit Trasactions" />
+
+                <p:dataTable value="#{userTransactionBean.creditTransaction}" var="users" 
+                             styleClass = "trasactionTable" cellSeparator="2"  >
+
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Received From</f:facet>    				
+                            #{users.senderName}
+
+                    </p:column>
+
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Amount</f:facet>    				
+                            #{users.amount}
+
+                    </p:column>
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Date</f:facet>    				
+                            #{users.transactionDate}
+
+                    </p:column>
+
+
+                </p:dataTable>
+            </h:panelGrid>
+
+            <h:panelGrid  >
+                <h:form>
+
+                    <h:commandButton value="Logout" action="#{userTransactionBean.logout()}"/>
+                </h:form>
+            </h:panelGrid>
+
+
+        </h:panelGrid>
+
+        <h:panelGrid  columns="2" >
+
+            <h:panelGrid  >
+                <p:panel  header="Payemnt Request Rejected" />
+
+
+                <p:dataTable value="#{userTransactionRequestBean.rejectedTrasactionRequestRecords}" var="rejectedTrasactionRequestRecords">
+
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Rejected From</f:facet>    				
+                            #{rejectedTrasactionRequestRecords.requestTo}
+
+                    </p:column>
+
+                    <p:column styleClass="transactionTableHeader1">    				
+                        <f:facet name="header">Amount</f:facet>    				
+                            #{rejectedTrasactionRequestRecords.requestedAmount}
+
+                    </p:column>
+
+                    <p:column styleClass="transactionTableHeader">    				
+                        <f:facet name="header">Date</f:facet>    				
+                            #{rejectedTrasactionRequestRecords.notificationDate}
+
+                    </p:column>
+
+
+                </p:dataTable>
+
+                <h:panelGrid  columns="2" >
+
+                    <h:form>
+
+                        <h:commandButton 
+
+                            value="Request Money" action="/users/usertransactionrequest.xhtml?faces-redirect=true" >
+
+
+
+
+                            <f:ajax  render="@all"/>
+
+                        </h:commandButton>  
+
+                        <h:commandButton id="notifications"  value="Notifications" action="/users/notificationlist.xhtml?faces-redirect=true" title="Notifications"/>
+
+                    </h:form>
+
+                </h:panelGrid>                
+
+            </h:panelGrid>
+
+        </h:panelGrid>
+
+
+
+
+
+    </h:body>
+</html>

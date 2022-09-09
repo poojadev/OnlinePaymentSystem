@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script type="text/css">
+            html, body
+            {
+                margin:0px;
+                padding:0px;
+                width:100%;
+                min-height:100%;
+                height:100%;
+            }
+            .outer_table
+            {
+                width:100%;
+                height:100%;
+            }
+        </script>    
+
+    </h:head>
+    <h:body>
+        <h:form>  
+            <p:growl id="msgs" showDetail="true" />
+
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center"  class="outer_table">
+                <tr>
+                    <td>
+                        <table width="500" height="300" cellpadding="0" cellspacing="0" border="0" align="center">
+                            <tr>
+                                <td align="center">
+                                    <p:panel header="Register">
+                                        <h:panelGrid columns="1" cellpadding="1">  
+
+                                            <br/>
+                                            <h:panelGrid columns="2" cellpadding="1">  
+
+                                                First Name <h:inputText id ="firstname" value="#{userRegistrationBean.firstName}" title="Enter First name" required="true" requiredMessage="Mandatory Field"/>
+                                                <h:message style="color:red" for="firstname"/>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="2" cellpadding="1">  
+
+                                                Last Name <h:inputText id ="lastname" value="#{userRegistrationBean.lastName}" title="Enter Last name" required="false" />
+                                                <h:message style="color:red" for="lastname"/>
+                                            </h:panelGrid>
+
+                                            <h:panelGrid columns="2" cellpadding="1">  
+
+                                                *User Name: <h:inputText id ="username" value="#{userRegistrationBean.adminUserName}" 
+
+                                                                         title="Enter User name" required="true" requiredMessage="Mandatory Field"/>
+                                                <h:message style="color:red" for="username"/>
+                                            </h:panelGrid>
+
+
+                                            <h:panelGrid columns="2" cellpadding="1">  
+
+                                                *Password: <h:inputSecret id ="userPassword" value="#{userRegistrationBean.userpassword}" title="Enter password" label="password" required="true" requiredMessage="Mandatory Field"/>
+                                                <h:message style="color:red" for="userPassword"/>
+                                            </h:panelGrid>
+
+
+
+                                            <h:panelGrid columns="2" cellpadding="1">  
+
+                                                <h:commandButton id="register" type="submit" value="Register" action="#{userRegistrationBean.registerAdmin()}" title="Register User">
+                                                    <f:param name="id" value="#{userRegistrationBean.id}" />
+
+
+                                                </h:commandButton>
+                                                <h:commandButton id="reset" type="reset" value="Reset Form" title="Reset Form"/>
+                                            </h:panelGrid>
+
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+
+    </h:body>
+</html>
+

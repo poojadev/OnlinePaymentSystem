@@ -1,0 +1,5 @@
+namespace java TimeStampProvider
+typedef i64 Timestamp
+service TimeServer {
+   Timestamp time()
+}

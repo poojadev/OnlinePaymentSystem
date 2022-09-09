@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    
+  
+    <navigation-rule>
+        <from-view-id>/users/useraccountactivitypage.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>/users/notificationlist.xhtml?faces-redirect=true</from-action>
+            <to-view-id>/users/notificationlist.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>/users/usertransactionrequest.xhtml?faces-redirect=true</from-action>
+            <to-view-id>/users/usertransactionrequest.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/users/usertransactionform.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>/users/useraccountactivitypage.xhtml</from-action>
+            <to-view-id>/users/useraccountactivitypage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>/users/useraccountactivitypage.xhtml</from-action>
+            <to-view-id>/users/useraccountactivitypage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/users/usertransactionrequest.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userTransactionRequestBean.submitTransactionRequestDeatils()}</from-action>
+            <to-view-id>/users/useraccountactivitypage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    
+    
+    
+    
+</faces-config>
